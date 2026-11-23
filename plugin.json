@@ -1,0 +1,16 @@
+{
+    "id": "theme-switcher",
+    "name": "Preset Switcher",
+    "version": "1.0.0",
+    "api": 1,
+    "description": "Shows the last applied desktop preset and cycles through saved presets.",
+    "icon": "palette",
+    "frame": true,
+    "cloneable": false,
+    "settings": { "width": 320, "height": 140, "last": "" },
+    "settingsInfo": {
+        "width": { "label": "Width", "min": 200, "max": 800, "step": 10, "unit": "px" },
+        "height": { "label": "Height", "min": 90, "max": 400, "step": 10, "unit": "px" },
+        "last": { "label": "Last applied preset", "description": "Remembered by the widget." }
+    }
+}
