@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell.Widgets
 
 Item {
     id: root
@@ -23,13 +24,14 @@ Item {
     }
 
     // image / swatch stage: the top strip, or the whole card
-    Item {
+    ClippingRectangle {
         id: stage
+        color: "transparent"
+        radius: root.s.cornerRadius
         x: root.fullLayout && root.imageMode ? 0 : 12
         y: root.fullLayout && root.imageMode ? 0 : 12
         width: root.fullLayout && root.imageMode ? root.width : root.width - 24
         height: root.fullLayout && root.imageMode ? root.height : Math.max(24, root.height * 0.35)
-        clip: true
 
         Row {
             id: swatches
@@ -68,6 +70,7 @@ Item {
         Rectangle {
             visible: root.imageMode && !root.fullLayout
             anchors.fill: parent
+            radius: root.s.cornerRadius
             color: "transparent"
             border.width: 1
             border.color: t.pLine
@@ -103,7 +106,8 @@ Item {
             width: parent.width - 2 * 36 - 2 * 8
             height: 36
             radius: 8
-            color: root.imageOnBackground ? Qt.alpha(t.pSurface, 0.8) : "transparent"
+            color: root.imageOnBackground && root.s.nameBackground
+                   ? Qt.alpha(t.pSurface, 0.8) : "transparent"
 
             Text {
                 anchors.fill: parent
