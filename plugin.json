@@ -1,16 +1,83 @@
 {
     "id": "theme-switcher",
     "name": "Preset Switcher",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "api": 1,
     "description": "Shows the last applied desktop preset and cycles through saved presets.",
     "icon": "palette",
     "frame": true,
     "cloneable": false,
-    "settings": { "width": 320, "height": 140, "last": "" },
+    "settings": {
+        "mode": "colors",
+        "last": "",
+        "height": 140,
+        "width": 320,
+        "image": "",
+        "imageLayout": "strip",
+        "imageFit": "cover",
+        "imageWidth": 320,
+        "imageHeight": 140,
+        "imageX": 0,
+        "imageY": 0
+    },
     "settingsInfo": {
-        "width": { "label": "Width", "min": 200, "max": 800, "step": 10, "unit": "px" },
-        "height": { "label": "Height", "min": 90, "max": 400, "step": 10, "unit": "px" },
-        "last": { "label": "Last applied preset", "description": "Remembered by the widget." }
-    }
+        "mode": {
+            "label": "Mode",
+            "description": "Show the theme colors or an image.",
+            "choices": [
+                { "value": "colors", "label": "Colors" },
+                { "value": "image", "label": "Image" }
+            ],
+            "group": "Mode"
+        },
+        "last": {
+            "label": "Last applied preset",
+            "description": "Remembered by the widget.",
+            "group": "Preset"
+        },
+        "height": { "label": "Height", "min": 90, "max": 600, "step": 10, "unit": "px", "group": "Size" },
+        "width": { "label": "Width", "min": 200, "max": 1000, "step": 10, "unit": "px", "group": "Size" },
+        "image": {
+            "label": "Image",
+            "description": "Drop a file on the widget, or paste a full path. Empty uses the current wallpaper.",
+            "group": "Image"
+        },
+        "imageLayout": {
+            "label": "Layout",
+            "description": "Where the image is drawn.",
+            "choices": [
+                { "value": "strip", "label": "Top strip" },
+                { "value": "full", "label": "Whole widget" }
+            ],
+            "group": "Image"
+        },
+        "imageFit": {
+            "label": "Fit",
+            "description": "How the image fills its area.",
+            "choices": [
+                { "value": "cover", "label": "Cover" },
+                { "value": "contain", "label": "Contain" },
+                { "value": "stretch", "label": "Stretch" },
+                { "value": "custom", "label": "Custom size" }
+            ],
+            "group": "Image"
+        },
+        "imageWidth": {
+            "label": "Image width", "description": "Used by Custom size.",
+            "min": 20, "max": 2000, "step": 10, "unit": "px", "group": "Image size"
+        },
+        "imageHeight": {
+            "label": "Image height", "description": "Used by Custom size.",
+            "min": 20, "max": 2000, "step": 10, "unit": "px", "group": "Image size"
+        },
+        "imageX": {
+            "label": "Image offset X", "description": "Used by Custom size.",
+            "min": -500, "max": 500, "step": 5, "unit": "px", "group": "Image size"
+        },
+        "imageY": {
+            "label": "Image offset Y", "description": "Used by Custom size.",
+            "min": -500, "max": 500, "step": 5, "unit": "px", "group": "Image size"
+        }
+    },
+    "groups": ["Mode", "Preset", "Size", "Image", "Image size"]
 }

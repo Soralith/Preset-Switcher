@@ -7,8 +7,10 @@ QtObject {
 
     property var presets: []         // [name]
     property string rawList: ""
+    property string wallpaper: ""
     readonly property string current: host.settings.last
-    readonly property var base: ["qs", "-c", "sekaipop", "ipc", "call", "presets"]
+    readonly property var ipc: ["qs", "-c", "sekaipop", "ipc", "call"]
+    readonly property var base: ipc.concat(["presets"])
 
     function parseList(text) {
         var out = [];
@@ -44,12 +46,22 @@ QtObject {
         applyProc.running = true;
     }
 
-    function refresh() { listProc.running = true; }
+    function refresh() {
+        listProc.running = true;
+        if (host.settings.mode === "image" && host.settings.image === "")
+            wallProc.running = true;
+    }
 
     property Process listProc: Process {
         command: svc.base.concat(["list"])
         stdout: StdioCollector {
             onStreamFinished: { svc.rawList = text; svc.presets = svc.parseList(text); }
+        }
+    }
+    property Process wallProc: Process {
+        command: svc.ipc.concat(["wallpaper", "get"])
+        stdout: StdioCollector {
+            onStreamFinished: svc.wallpaper = text.trim()
         }
     }
     property Process applyProc: Process {
